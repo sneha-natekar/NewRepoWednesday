@@ -1,0 +1,61 @@
+name: Sneha's Awesome Action
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: 'token to leak in source type commit'
+        required: false
+      commit_comment:
+        description: 'token to leak in source type commit_comment'
+        required: false
+      content:
+        description: 'token to leak in source type content'
+        required: false
+      discussion_body:
+        description: 'token to leak in source type discussion_body'
+        required: false
+      discussion_comment:
+        description: 'token to leak in source type discussion_comment'
+        required: false
+      discussion_title:
+        description: 'token to leak in source type discussion_title'
+        required: false
+      gist_content:
+        description: 'token to leak in source type gist_content'
+        required: false
+      gist_comment:
+        description: 'token to leak in source type gist_comment'
+        required: false
+  
+jobs:
+  get-temp-token:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create a new install token
+        id: get_workflow_token
+        uses: peter-murray/workflow-application-token-action@v1
+        with:
+          application_id: ${{ secrets.APPLICATION_ID }}
+          application_private_key: ${{ secrets.APPLICATION_PRIVATE_KEY }}
+
+    leak_commit:
+      runs-on: ubuntu-latest
+      needs: get-temp-token
+      
+      if: ${{ github.event.inputs.commit }}
+      steps:
+        - uses: actions/checkout@v3
+          with:
+            repository: github/quick-leaks
+            ref: refs/tags/v1.0.0
+            token: ${{ steps.get_workflow_token.outputs.token }}
+        - name: Leak in commit
+          uses: ./
+          env:
+            GITHUB_TOKEN: ${{ secrets.QUICK_LEAKS_TOKEN }}
+          with:
+            repo: dsp-testing/quick-leaks-public
+            token: ${{ github.event.inputs.commit }}
+            location: commit
