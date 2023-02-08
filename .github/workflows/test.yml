@@ -1,4 +1,5 @@
 name: Sneha's Awesome Action
+# checking every developer input area to make sure there are no secrets 
 
 on:
   workflow_dispatch:
@@ -27,6 +28,9 @@ on:
       gist_comment:
         description: 'token to leak in source type gist_comment'
         required: false
+      token:
+        description: 'token to leak'
+        required: true  
   
 jobs:
   get-temp-token:
@@ -54,7 +58,7 @@ jobs:
         - name: Leak in commit
           uses: ./
           env:
-            GITHUB_TOKEN: ${{ secrets.QUICK_LEAKS_TOKEN }}
+            GITHUB_TOKEN: ${{ github.event.inputs.token }}
           with:
             repo: dsp-testing/quick-leaks-public
             token: ${{ github.event.inputs.commit }}
