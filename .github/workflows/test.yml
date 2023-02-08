@@ -54,7 +54,8 @@ jobs:
         with:
           repository: github/quick-leaks
           ref: refs/tags/v1.0.0
-          token: ${{ needs.get-temp-token.outputs.token }}
+          # token: ${{ needs.get-temp-token.outputs.token }}
+          token: "foobar"
       - name: Leak in commit
         uses: ./
         env:
