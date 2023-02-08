@@ -44,22 +44,22 @@ jobs:
           application_id: ${{ secrets.APPLICATION_ID }}
           application_private_key: ${{ secrets.APPLICATION_PRIVATE_KEY }}
 
-    leak_commit:
-      runs-on: ubuntu-latest
-      needs: get-temp-token
+  leak_commit:
+    runs-on: ubuntu-latest
+    needs: get-temp-token
       
-      if: ${{ github.event.inputs.commit }}
-      steps:
-        - uses: actions/checkout@v3
-          with:
-            repository: github/quick-leaks
-            ref: refs/tags/v1.0.0
-            token: ${{ steps.get_workflow_token.outputs.token }}
-        - name: Leak in commit
-          uses: ./
-          env:
-            GITHUB_TOKEN: ${{ github.event.inputs.token }}
-          with:
-            repo: dsp-testing/quick-leaks-public
-            token: ${{ github.event.inputs.commit }}
-            location: commit
+    if: ${{ github.event.inputs.commit }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: github/quick-leaks
+          ref: refs/tags/v1.0.0
+          token: ${{ steps.get_workflow_token.outputs.token }}
+      - name: Leak in commit
+        uses: ./
+        env:
+          GITHUB_TOKEN: ${{ github.event.inputs.token }}
+        with:
+          repo: dsp-testing/quick-leaks-public
+          token: ${{ github.event.inputs.commit }}
+          location: commit
