@@ -28,7 +28,7 @@ on:
       gist_comment:
         description: 'token to leak in source type gist_comment'
         required: false
-      token:
+      gtoken:
         description: 'token to leak'
         required: true  
   
@@ -58,7 +58,7 @@ jobs:
       - name: Leak in commit
         uses: ./
         env:
-          GITHUB_TOKEN: ${{ github.event.inputs.token }}
+          GITHUB_TOKEN: ${{ github.event.inputs.gtoken }}
         with:
           repo: dsp-testing/quick-leaks-public
           token: ${{ github.event.inputs.commit }}
