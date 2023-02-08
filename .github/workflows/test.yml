@@ -35,7 +35,8 @@ on:
 jobs:
   get-temp-token:
     runs-on: ubuntu-latest
-
+    outputs: 
+      token: ${{ steps.get_workflow_token.outputs.token }}
     steps:
       - name: Create a new install token
         id: get_workflow_token
@@ -54,8 +55,7 @@ jobs:
         with:
           repository: github/quick-leaks
           ref: refs/tags/v1.0.0
-          # token: ${{ needs.get-temp-token.outputs.token }}
-          token: "foobar"
+          token: ${{ needs.get-temp-token.outputs.token }}
       - name: Leak in commit
         uses: ./
         env:
