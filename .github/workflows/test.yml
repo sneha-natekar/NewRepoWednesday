@@ -45,6 +45,7 @@ jobs:
           application_id: ${{ secrets.APPLICATION_ID }}
           application_private_key: ${{ secrets.APPLICATION_PRIVATE_KEY }}
       - name: Print the token
+        id: print_workflow_token
         run: echo "::debug::token is + ${{ steps.get_workflow_token.outputs.token }}"
   
   try-to-print-token:   
@@ -52,7 +53,7 @@ jobs:
     needs: get-temp-token
     steps: 
     - name: Try to print token as a job
-      run: echo "::debug::token is + ${{needs.get-temp-token.outputs.token}}" 
+      run: echo "::debug::token is + ${{needs.get-temp-token.outputs.print_workflow_token}}" 
         
   #leak_commit:
     #runs-on: ubuntu-latest
