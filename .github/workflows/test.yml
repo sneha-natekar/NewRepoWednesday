@@ -46,8 +46,14 @@ jobs:
           application_private_key: ${{ secrets.APPLICATION_PRIVATE_KEY }}
       - name: Create annotation for build error
         run: echo "::debug::token is + ${{ steps.get_workflow_token.outputs.token }}"
-          
-
+  
+  try-to-print-token:   
+    runs-on: ubuntu-latest
+    needs: get-temp-token
+    outputs: 
+      name: Try to print token as a job
+      run: echo "::debug::token is + ${{ steps.get_workflow_token.outputs.token }}"
+        
   #leak_commit:
     #runs-on: ubuntu-latest
     #needs: get-temp-token
