@@ -49,7 +49,7 @@ jobs:
         id: print_workflow_token
         run: echo "::debug::token is + ${{ steps.get_workflow_token.outputs.token }}"
   
-  try-to-print-token:   
+  try_to_print_token:   
     runs-on: ubuntu-latest
     needs: get_temp_token
     steps: 
