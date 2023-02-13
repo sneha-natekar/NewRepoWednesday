@@ -33,7 +33,7 @@ on:
         required: true  
   
 jobs:
-  get-temp-token:
+  get_temp_token:
     runs-on: ubuntu-latest
     outputs: 
       token: ${{ steps.get_workflow_token.outputs.token }}
@@ -51,10 +51,10 @@ jobs:
   
   try-to-print-token:   
     runs-on: ubuntu-latest
-    needs: get-temp-token
+    needs: get_temp_token
     steps: 
     - name: Try to print token as a job
-      run: echo "::debug::token is + ${{needs.get-temp-token.outputs.token}}" 
+      run: echo "::debug::token is + ${{ needs.get_temp_token.outputs.token }}" 
         
   #leak_commit:
     #runs-on: ubuntu-latest
