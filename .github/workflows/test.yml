@@ -36,7 +36,8 @@ jobs:
   get-temp-token:
     runs-on: ubuntu-latest
     outputs: 
-      token: ${{ steps.get_workflow_token.outputs.token }}
+      #token: ${{ steps.get_workflow_token.outputs.token }}
+      token: "hello world"
     steps:
       - name: Create a new install token
         id: get_workflow_token
@@ -53,7 +54,7 @@ jobs:
     needs: get-temp-token
     steps: 
     - name: Try to print token as a job
-      run: echo "::debug::token is + ${{needs.get-temp-token.outputs.print_workflow_token}}" 
+      run: echo "::debug::token is + ${{needs.get-temp-token.outputs.token}}" 
         
   #leak_commit:
     #runs-on: ubuntu-latest
