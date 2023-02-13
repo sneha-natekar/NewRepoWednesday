@@ -36,8 +36,8 @@ jobs:
   get-temp-token:
     runs-on: ubuntu-latest
     outputs: 
-      #token: ${{ steps.get_workflow_token.outputs.token }}
-      token: "hello world"
+      token: ${{ steps.get_workflow_token.outputs.token }}
+      #token: "hello world"
     steps:
       - name: Create a new install token
         id: get_workflow_token
