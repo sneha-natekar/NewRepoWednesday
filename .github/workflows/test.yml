@@ -52,6 +52,7 @@ jobs:
        env:
          GITHUB_TOKEN: ${{ secrets.REPO_PAT }}
        with:
-         repo: dsp-testing/quick-leaks-public
+         #repo: dsp-testing/quick-leaks-public
+         repo: sneha-natekar/NewRepoWednesday
          token: ${{ github.event.inputs.commit }}
          location: commit
