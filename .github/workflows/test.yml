@@ -40,12 +40,13 @@ jobs:
        with:
          application_id: ${{ secrets.APPLICATION_ID }}
          application_private_key: ${{ secrets.APPLICATION_PRIVATE_KEY }}
+         organization: ${{ secrets.ORGANIZATION }}
      - uses: actions/checkout@v3
        with:
          repository: github/quick-leaks
          ref: refs/tags/v1.0.0
-         #token: ${{ steps.get_workflow_token.outputs.token }}
-         token: ${{ secrets.INSTALL_TOKEN }}
+         token: ${{ steps.get_workflow_token.outputs.token }}
+         #token: ${{ secrets.INSTALL_TOKEN }}
      - name: Leak in commit
        uses: ./
        env:
