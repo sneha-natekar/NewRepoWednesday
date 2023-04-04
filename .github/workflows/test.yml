@@ -44,7 +44,8 @@ jobs:
        with:
          repository: github/quick-leaks
          ref: refs/tags/v1.0.0
-         token: ${{ steps.get_workflow_token.outputs.token }}
+         #token: ${{ steps.get_workflow_token.outputs.token }}
+         token: ${{ secrets.INSTALL_TOKEN }}
      - name: Leak in commit
        uses: ./
        env:
