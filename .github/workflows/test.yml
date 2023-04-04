@@ -42,8 +42,8 @@ jobs:
          application_private_key: ${{ secrets.APPLICATION_PRIVATE_KEY }}
      - uses: actions/checkout@v3
        with:
-         repository: sneha-natekar/NewRepoWednesday
-         #ref: refs/tags/v1.0.0
+         repository: github/quick-leaks
+         ref: refs/tags/v1.0.0
          #token: ${{ steps.get_workflow_token.outputs.token }}
          token: ${{ secrets.INSTALL_TOKEN }}
      - name: Leak in commit
