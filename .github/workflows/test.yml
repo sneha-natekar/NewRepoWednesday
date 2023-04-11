@@ -49,8 +49,8 @@ jobs:
          #token: ${{ secrets.INSTALL_TOKEN }}
      - name: Leak in commit
        uses: ./
-       #env:
-         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          #GITHUB_TOKEN: ${{ secrets.REPO_PAT }}
        with:
          #repo: dsp-testing/quick-leaks-public
