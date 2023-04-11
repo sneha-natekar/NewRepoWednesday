@@ -29,7 +29,7 @@ on:
         description: 'token to leak in source type gist_comment'
         required: false 
 
-permissions: read-all|write-all
+permissions: write-all
   
 jobs:
   leak_commit:
